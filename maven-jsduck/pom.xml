@@ -9,7 +9,7 @@
 	<packaging>maven-plugin</packaging>
 
 	<properties>
-		<ruby.version>1.6.7.2</ruby.version>
+		<ruby.version>1.7.11</ruby.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	
