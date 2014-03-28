@@ -40,7 +40,7 @@ public class JsDuckMojo extends AbstractMojo {
 	/**
 	 * The target directory to generate the API documentation in.
 	 * 
-	 * @parameter property="jsduck.targetDirectory" default-value="target/jsduck-api"
+	 * @parameter property="jsduck.targetDirectory" default-value="${project.build.directory}/jsduck-api"
 	 */
 	private String targetDirectory;
 	
