@@ -37,8 +37,10 @@ module JsDuck
     def aggregate(parsed_files)
       agr = Aggregator.new
       parsed_files.each do |file|
-        Logger.log("Aggregating", file.filename)
-        agr.aggregate(file)
+        if file
+          Logger.log("Aggregating", file.filename)
+          agr.aggregate(file)
+        end
       end
       agr.result
     end

@@ -17,8 +17,10 @@ module JsDuck
 
         FileUtils.mkdir(destination)
         Util::Parallel.each(@source_files) do |file|
-          Logger.log("Writing source", file.html_filename)
-          write_single(destination + "/" + file.html_filename, file.to_html)
+          if file
+            Logger.log("Writing source", file.html_filename)
+            write_single(destination + "/" + file.html_filename, file.to_html)
+          end
         end
       end
 
@@ -32,14 +34,16 @@ module JsDuck
       def generate_html_filenames
         filenames = {}
         @source_files.each do |file|
-          i = 0
-          begin
-            name = html_filename(file.filename, i)
-            ci_name = name.downcase # case insensitive name
-            i += 1
-          end while filenames.has_key?(ci_name)
-          filenames[ci_name] = true
-          file.html_filename = name
+          if file
+           i = 0
+            begin
+              name = html_filename(file.filename, i)
+              ci_name = name.downcase # case insensitive name
+              i += 1
+            end while filenames.has_key?(ci_name)
+            filenames[ci_name] = true
+            file.html_filename = name
+          end
         end
       end
 

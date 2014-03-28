@@ -15,8 +15,16 @@ module JsDuck
         Logger.log("Parsing", fname)
         begin
           source = Util::IO.read(fname)
-          docs = Parser.new.parse(source, fname, opts)
-          Source::File.new(source, docs, fname)
+          parsed = nil
+          begin
+          	parsed = Parser.new.parse(source, fname, opts)
+          rescue Exception
+          	Logger.fatal("Error while parsing #{fname}. Skipping this file.")
+          end
+          if parsed
+            docs = parsed
+          	Source::File.new(source, docs, fname)
+          end
         rescue
           Logger.fatal_backtrace("Error while parsing #{fname}", $!)
           exit(1)
