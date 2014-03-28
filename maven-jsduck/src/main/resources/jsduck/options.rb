@@ -140,8 +140,8 @@ module JsDuck
       @imports = []
       @new_since = nil
 
-      # Turn multiprocessing off by default in Windows
-      Util::Parallel.in_processes = Util::OS::windows? ? 0 : nil
+      # Turn multiprocessing off by default
+      Util::Parallel.in_processes = 0
 
       # Enable all warnings except the following:
       Logger.set_warning(:all, true)
